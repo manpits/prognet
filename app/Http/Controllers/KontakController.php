@@ -13,25 +13,7 @@ class KontakController extends Controller
      */
     public function index()
     {
-        //DB::statement('insert into kontaks (nama,alamat,telepon,gender) values (?,?,?,?)',['Wahyu','Denpasar','82149','Pria']);
-        //$data = DB::select('select * from kontaks where gender=? and alamat=?',['Pria','Denpasar']);
-
-        //Memanggil semua data di model / table kontaks
         $data = Kontak::all();
-
-        // $data = Kontak::where('alamat','Denpasar')
-        // ->orWhere('alamat','Singaraja')
-        // ->orWhere('alamat','Tabanan')
-        // ->get();
-
-        // $data = Kontak::where('alamat','Denpasar')
-        // ->orWhere(function($query){
-        //     $query->where('gender','Wanita')
-        //     ->where('telepon','0986776');
-        // })
-        // ->get();
-
-        // format data dan tampilkan di veiw
         return view('kontaklist',compact('data'));
     }
 
@@ -79,10 +61,6 @@ class KontakController extends Controller
      */
     public function update(Request $request, Kontak $kontak)
     {
-        // $kontak->nama = $request->nama;
-        // $kontak->alamat = $request->alamat;
-        // $kontak->telepon = $request->telepon;
-        // $kontak->gender = $request->gender;
         $kontak->fill($request->all());
         $kontak->save();
         return redirect('kontak');
